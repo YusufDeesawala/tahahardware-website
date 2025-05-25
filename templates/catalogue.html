@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse our catalogue of industrial brushes, hoses, and pneumatic products for retail and wholesale.">
+  <title>Brush & Hose Co. - Catalogue</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --steel-blue: #4682B4;
+      --soft-white: #F7FAFC;
+      --amber-glow: #A67C00;
+      --pale-blue: #F5F5F5;
+      --charcoal-gray: #374151;
+    }
+    .tab-button.active {
+      background-color: var(--steel-blue);
+      color: var(--soft-white);
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+  </style>
+</head>
+<body class="bg-[var(--soft-white)] text-[var(--charcoal-gray)] font-sans">
+  <!-- Header -->
+  <header class="bg-[var(--steel-blue)] text-white p-4 sticky top-0 z-10">
+    <nav class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold">Brush & Hose Co.</h1>
+      <ul class="flex space-x-6">
+        <li><a href="/" class="hover:text-[var(--pale-blue)]">Home</a></li>
+        <li><a href="/about" class="hover:text-[var(--pale-blue)]">About</a></li>
+        <li><a href="/catalogue" class="hover:text-[var(--pale-blue)]">Catalogue</a></li>
+        <li><a href="/contact" class="hover:text-[var(--pale-blue)]">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Catalogue Section -->
+  <section class="container mx-auto py-12">
+    <h2 class="text-3xl font-bold text-[var(--steel-blue)] mb-6 text-center">Catalogue</h2>
+    <div class="flex justify-center space-x-4 mb-8">
+      <button class="tab-button active bg-[var(--pale-blue)] text-[var(--charcoal-gray)] px-6 py-2 rounded-lg hover:bg-[var(--steel-blue)] hover:text-[var(--soft-white)] transition" onclick="showTab('brushes')" data-tab="brushes">Industrial Brushes</button>
+      <button class="tab-button bg-[var(--pale-blue)] text-[var(--charcoal-gray)] px-6 py-2 rounded-lg hover:bg-[var(--steel-blue)] hover:text-[var(--soft-white)] transition" onclick="showTab('hoses')" data-tab="hoses">Industrial Hoses</button>
+      <button class="tab-button bg-[var(--pale-blue)] text-[var(--charcoal-gray)] px-6 py-2 rounded-lg hover:bg-[var(--steel-blue)] hover:text-[var(--soft-white)] transition" onclick="showTab('pneumatic')" data-tab="pneumatic">Pneumatic Products</button>
+    </div>
+
+    <!-- Industrial Brushes -->
+    <div id="brushes" class="tab-content active">
+      <p class="text-lg text-[var(--charcoal-gray)] max-w-2xl mx-auto mb-6 text-center">Explore our durable industrial brushes designed for heavy-duty cleaning and processing tasks.</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-[var(--soft-white)] border border-[var(--pale-blue)] p-4 rounded-lg hover:shadow-lg transition">
+          <img src="/static/images/brush_wire.jpg" alt="Wire Brush" class="w-full h-48 object-cover rounded mb-4">
+          <h4 class="text-xl font-semibold text-[var(--charcoal-gray)]">Wire Brush</h4>
+          <p class="text-[var(--charcoal-gray)] mb-4">Stainless steel bristles for rust removal.</p>
+          <a href="/contact" class="inline-block bg-[var(--amber-glow)] text-[var(--steel-blue)] px-4 py-2 rounded hover:bg-[var(--pale-blue)] transition">Request Quote</a>
+        </div>
+        <div class="bg-[var(--soft-white)] border border-[var(--pale-blue)] p-4 rounded-lg hover:shadow-lg transition">
+          <img src="/static/images/brush_nylon.jpg" alt="Nylon Brush" class="w-full h-48 object-cover rounded mb-4">
+          <h4 class="text-xl font-semibold text-[var(--charcoal-gray)]">Nylon Brush</h4>
+          <p class="text-[var(--charcoal-gray)] mb-4">Flexible bristles for surface cleaning.</p>
+          <a href="/contact" class="inline-block bg-[var(--amber-glow)] text-[var(--steel-blue)] px-4 py-2 rounded hover:bg-[var(--pale-blue)] transition">Request Quote</a>
+        </div>
+        <div class="bg-[var(--soft-white)] border border-[var(--pale-blue)] p-4 rounded-lg hover:shadow-lg transition">
+          <img src="/static/images/brush_rotary.jpg" alt="Rotary Brush" class="w-full h-48 object-cover rounded mb-4">
+          <h4 class="text-xl font-semibold text-[var(--charcoal-gray)]">Rotary Brush</h4>
+          <p class="text-[var(--charcoal-gray)] mb-4">High-speed brushes for machinery.</p>
+          <a href="/contact" class="inline-block bg-[var(--amber-glow)] text-[var(--steel-blue)] px-4 py-2 rounded hover:bg-[var(--pale-blue)] transition">Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Industrial Hoses -->
+    <div id="hoses" class="tab-content">
+      <p class="text-lg text-[var(--charcoal-gray)] max-w-2xl mx-auto mb-6 text-center">Discover our durable, leak-proof hoses designed for industrial applications.</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-[var(--soft-white)] border border-[var(--pale-blue)] p-4 rounded-lg hover:shadow-lg transition">
+          <img src="/static/images/hose_rubber.jpg" alt="Rubber Hose" class="w-full h-48 object-cover rounded mb-4">
+          <h4 class="text-xl font-semibold text-[var(--charcoal-gray)]">Rubber Hose</h4>
+          <p class="text-[var(--charcoal-gray)] mb-4">Flexible hose for high-pressure fluids.</p>
+          <a href="/contact" class="inline-block bg-[var(--amber-glow)] text-[var(--steel-blue)] px-4 py-2 rounded hover:bg-[var(--pale-blue)] transition">Request Quote</a>
+        </div>
+        <div class="bg-[var(--soft-white)] border border-[var(--pale-blue)] p-4 rounded-lg hover:shadow-lg transition">
+          <img src="/static/images/hose_pvc.jpg" alt="PVC Hose" class="w-full h-48 object-cover rounded mb-4">
+          <h4 class="text-xl font-semibold text-[var(--charcoal-gray)]">PVC Hose</h4>
+          <p class="text-[var(--charcoal-gray)] mb-4">Lightweight hose for chemical transfer.</p>
+          <a href="/contact" class="inline-block bg-[var(--amber-glow)] text-[var(--steel-blue)] px-4 py-2 rounded hover:bg-[var(--pale-blue)] transition">Request Quote</a>
+        </div>
+        <div class="bg-[var(--soft-white)] border border-[var(--pale-blue)] p-4 rounded-lg hover:shadow-lg transition">
+          <img src="/static/images/hose_hydraulic.jpg" alt="Hydraulic Hose" class="w-full h-48 object-cover rounded mb-4">
+          <h4 class="text-xl font-semibold text-[var(--charcoal-gray)]">Hydraulic Hose</h4>
+          <p class="text-[var(--charcoal-gray)] mb-4">Reinforced hose for hydraulic systems.</p>
+          <a href="/contact" class="inline-block bg-[var(--amber-glow)] text-[var(--steel-blue)] px-4 py-2 rounded hover:bg-[var(--pale-blue)] transition">Request Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pneumatic Products -->
+    <div id="pneumatic" class="tab-content">
+      <p class="text-lg text-[var(--charcoal-gray)] max-w-2xl mx-auto mb-6 text-center">Browse our high-performance pneumatic tools and fittings for industrial use.</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-[var(--soft-white)] border border-[var(--pale-blue)] p-4 rounded-lg hover:shadow-lg transition">
+          <img src="/static/images/pneumatic_valve.jpg" alt="Pneumatic Valve" class="w-full h-48 object-cover rounded mb-4">
+          <h4 class="text-xl font-semibold text-[var(--charcoal-gray)]">Pneumatic Valve</h4>
+          <p class="text-[var(--charcoal-gray)] mb-4">Precision valve for air control.</p>
+          <a href="/contact" class="inline-block bg-[var(--amber-glow)] text-[var(--steel-blue)] px-4 py-2 rounded hover:bg-[var(--pale-blue)] transition">Request Quote</a>
+        </div>
+        <div class="bg-[var(--soft-white)] border border-[var(--pale-blue)] p-4 rounded-lg hover:shadow-lg transition">
+          <img src="/static/images/pneumatic_fitting.jpg" alt="Pneumatic Fitting" class="w-full h-48 object-cover rounded mb-4">
+          <h4 class="text-xl font-semibold text-[var(--charcoal-gray)]">Pneumatic Fitting</h4>
+          <p class="text-[var(--charcoal-gray)] mb-4">Secure fittings for air systems.</p>
+          <a href="/contact" class="inline-block bg-[var(--amber-glow)] text-[var(--steel-blue)] px-4 py-2 rounded hover:bg-[var(--pale-blue)] transition">Request Quote</a>
+        </div>
+        <div class="bg-[var(--soft-white)] border border-[var(--pale-blue)] p-4 rounded-lg hover:shadow-lg transition">
+          <img src="/static/images/pneumatic_tool.jpg" alt="Pneumatic Tool" class="w-full h-48 object-cover rounded mb-4">
+          <h4 class="text-xl font-semibold text-[var(--charcoal-gray)]">Pneumatic Tool</h4>
+          <p class="text-[var(--charcoal-gray)] mb-4">High-torque tool for industrial tasks.</p>
+          <a href="/contact" class="inline-block bg-[var(--amber-glow)] text-[var(--steel-blue)] px-4 py-2 rounded hover:bg-[var(--pale-blue)] transition">Request Quote</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-[var(--steel-blue)] text-white p-4">
+    <div class="container mx-auto text-center">
+      <p>© 2025 Brush & Hose Co. All rights reserved.</p>
+      <div class="flex justify-center space-x-4 mt-4">
+        <a href="https://x.com" class="text-[var(--pale-blue)] hover:text-[var(--amber-glow)]">X</a>
+        <a href="https://instagram.com" class="text-[var(--pale-blue)] hover:text-[var(--amber-glow)]">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/static/js/tabs.js"></script>
+  <script>
+    // Handle tab selection from URL hash
+    window.addEventListener('load', () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash) {
+        showTab(hash);
+      }
+    });
+  </script>
+</body>
+</html>

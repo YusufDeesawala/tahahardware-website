@@ -14,7 +14,7 @@ def about():
 
 @app.route('/catalogue')
 def catalogue():
-    return render_template('catalogue.html')  # Placeholder for Catalogue page
+    return render_template('catalogue.html')
 
 @app.route('/contact')
 def contact():
