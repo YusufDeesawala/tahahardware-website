@@ -10,7 +10,7 @@ def home():
 
 @app.route('/about')
 def about():
-    return render_template('about.html')  # Placeholder for About page
+    return render_template('about.html')
 
 @app.route('/catalogue')
 def catalogue():
