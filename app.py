@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -19,13 +19,6 @@ def catalogue():
 @app.route('/contact')
 def contact():
     return render_template('contact.html')  # Placeholder for Contact page
-
-@app.route('/subscribe', methods=['POST'])
-def subscribe():
-    email = request.form.get('email')
-    # Add logic to store email (e.g., in a database)
-    print(f"Subscribed email: {email}")  # Temporary logging
-    return redirect(url_for('home'))
 
 if __name__ == '__main__':
     app.run(debug=True)

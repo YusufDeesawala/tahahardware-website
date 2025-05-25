@@ -14,6 +14,23 @@
       --pale-blue: #BEE3F8;
       --charcoal-gray: #374151;
     }
+    .marquee-container {
+      overflow: hidden;
+      width: 100%;
+      background: var(--pale-blue);
+      padding: 1rem 0;
+    }
+    .marquee {
+      display: flex;
+      white-space: nowrap;
+    }
+    .marquee img {
+      height: 64px;
+      margin: 0 2rem;
+    }
+    .marquee:hover {
+      animation-play-state: paused;
+    }
   </style>
 </head>
 <body class="bg-[var(--soft-white)] text-[var(--charcoal-gray)] font-sans">
@@ -45,14 +62,24 @@
     <p class="text-lg text-[var(--charcoal-gray)] max-w-2xl mx-auto">We aim to empower homes and industries with reliable, high-quality brushes and hoses, ensuring performance and durability for every task.</p>
   </section>
 
-  <!-- Brands We Offer -->
-  <section class="bg-[var(--pale-blue)] py-12">
+  <!-- Brands We Offer (Marquee) -->
+  <section class="py-12">
     <div class="container mx-auto">
       <h3 class="text-2xl font-semibold text-[var(--steel-blue)] mb-6 text-center">Brands We Offer</h3>
-      <div class="flex justify-center space-x-8">
-        <img src="/static/images/brand1.png" alt="Brand 1" class="h-16">
-        <img src="/static/images/brand2.png" alt="Brand 2" class="h-16">
-        <img src="/static/images/brand3.png" alt="Brand 3" class="h-16">
+      <div class="marquee-container">
+        <marquee behavior="scroll" direction="left" scrollamount="5" onmouseover="this.stop()" onmouseout="this.start()">
+          <div class="marquee">
+            <img src="/static/images/brand1.png" alt="Brand 1">
+            <img src="/static/images/brand2.png" alt="Brand 2">
+            <img src="/static/images/brand3.png" alt="Brand 3">
+            <img src="/static/images/brand4.png" alt="Brand 4">
+            <!-- Duplicate images for seamless looping -->
+            <img src="/static/images/brand1.png" alt="Brand 1">
+            <img src="/static/images/brand2.png" alt="Brand 2">
+            <img src="/static/images/brand3.png" alt="Brand 3">
+            <img src="/static/images/brand4.png" alt="Brand 4">
+          </div>
+        </marquee>
       </div>
     </div>
   </section>
@@ -103,17 +130,6 @@
           <p class="text-[var(--charcoal-gray)]">Durable products you can trust.</p>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Newsletter Signup -->
-  <section class="bg-[var(--pale-blue)] py-12">
-    <div class="container mx-auto text-center">
-      <h3 class="text-2xl font-semibold text-[var(--steel-blue)] mb-6">Stay Updated</h3>
-      <form action="/subscribe" method="POST" class="max-w-md mx-auto">
-        <input type="email" name="email" placeholder="Enter your email" class="w-full p-3 rounded-lg border border-[var(--pale-blue)] mb-4 focus:outline-none focus:border-[var(--steel-blue)]">
-        <button type="submit" class="bg-[var(--amber-glow)] text-[var(--steel-blue)] px-6 py-3 rounded-lg hover:bg-[var(--pale-blue)] transition">Subscribe</button>
-      </form>
     </div>
   </section>
 
