@@ -24,6 +24,33 @@
     .tab-content.active {
       display: block;
     }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background-color: var(--soft-white);
+      padding: 2rem;
+      border-radius: 0.5rem;
+      max-width: 500px;
+      width: 90%;
+      position: relative;
+    }
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body class="bg-[var(--soft-white)] text-[var(--charcoal-gray)] font-sans">
@@ -82,19 +109,19 @@
           <img src="/static/images/hose_rubber.jpg" alt="Rubber Hose" class="w-full h-48 object-cover rounded mb-4">
           <h4 class="text-xl font-semibold text-[var(--charcoal-gray)]">Rubber Hose</h4>
           <p class="text-[var(--charcoal-gray)] mb-4">Flexible hose for high-pressure fluids.</p>
-          <a href="/contact" class="inline-block bg-[var(--amber-glow)] text-[var(--steel-blue)] px-4 py-2 rounded hover:bg-[var(--pale-blue)] transition">Request Quote</a>
+          <button onclick="openModal('rubber-hose')" class="bg-[var(--amber-glow)] text-[var(--steel-blue)] px-4 py-2 rounded hover:bg-[var(--pale-blue)] transition">View Details</button>
         </div>
         <div class="bg-[var(--soft-white)] border border-[var(--pale-blue)] p-4 rounded-lg hover:shadow-lg transition">
           <img src="/static/images/hose_pvc.jpg" alt="PVC Hose" class="w-full h-48 object-cover rounded mb-4">
           <h4 class="text-xl font-semibold text-[var(--charcoal-gray)]">PVC Hose</h4>
           <p class="text-[var(--charcoal-gray)] mb-4">Lightweight hose for chemical transfer.</p>
-          <a href="/contact" class="inline-block bg-[var(--amber-glow)] text-[var(--steel-blue)] px-4 py-2 rounded hover:bg-[var(--pale-blue)] transition">Request Quote</a>
+          <button onclick="openModal('pvc-hose')" class="bg-[var(--amber-glow)] text-[var(--steel-blue)] px-4 py-2 rounded hover:bg-[var(--pale-blue)] transition">View Details</button>
         </div>
         <div class="bg-[var(--soft-white)] border border-[var(--pale-blue)] p-4 rounded-lg hover:shadow-lg transition">
           <img src="/static/images/hose_hydraulic.jpg" alt="Hydraulic Hose" class="w-full h-48 object-cover rounded mb-4">
           <h4 class="text-xl font-semibold text-[var(--charcoal-gray)]">Hydraulic Hose</h4>
           <p class="text-[var(--charcoal-gray)] mb-4">Reinforced hose for hydraulic systems.</p>
-          <a href="/contact" class="inline-block bg-[var(--amber-glow)] text-[var(--steel-blue)] px-4 py-2 rounded hover:bg-[var(--pale-blue)] transition">Request Quote</a>
+          <button onclick="openModal('hydraulic-hose')" class="bg-[var(--amber-glow)] text-[var(--steel-blue)] px-4 py-2 rounded hover:bg-[var(--pale-blue)] transition">View Details</button>
         </div>
       </div>
     </div>
@@ -107,23 +134,117 @@
           <img src="/static/images/pneumatic_valve.jpg" alt="Pneumatic Valve" class="w-full h-48 object-cover rounded mb-4">
           <h4 class="text-xl font-semibold text-[var(--charcoal-gray)]">Pneumatic Valve</h4>
           <p class="text-[var(--charcoal-gray)] mb-4">Precision valve for air control.</p>
-          <a href="/contact" class="inline-block bg-[var(--amber-glow)] text-[var(--steel-blue)] px-4 py-2 rounded hover:bg-[var(--pale-blue)] transition">Request Quote</a>
+          <button onclick="openModal('pneumatic-valve')" class="bg-[var(--amber-glow)] text-[var(--steel-blue)] px-4 py-2 rounded hover:bg-[var(--pale-blue)] transition">View Details</button>
         </div>
         <div class="bg-[var(--soft-white)] border border-[var(--pale-blue)] p-4 rounded-lg hover:shadow-lg transition">
           <img src="/static/images/pneumatic_fitting.jpg" alt="Pneumatic Fitting" class="w-full h-48 object-cover rounded mb-4">
           <h4 class="text-xl font-semibold text-[var(--charcoal-gray)]">Pneumatic Fitting</h4>
           <p class="text-[var(--charcoal-gray)] mb-4">Secure fittings for air systems.</p>
-          <a href="/contact" class="inline-block bg-[var(--amber-glow)] text-[var(--steel-blue)] px-4 py-2 rounded hover:bg-[var(--pale-blue)] transition">Request Quote</a>
+          <button onclick="openModal('pneumatic-fitting')" class="bg-[var(--amber-glow)] text-[var(--steel-blue)] px-4 py-2 rounded hover:bg-[var(--pale-blue)] transition">View Details</button>
         </div>
         <div class="bg-[var(--soft-white)] border border-[var(--pale-blue)] p-4 rounded-lg hover:shadow-lg transition">
           <img src="/static/images/pneumatic_tool.jpg" alt="Pneumatic Tool" class="w-full h-48 object-cover rounded mb-4">
           <h4 class="text-xl font-semibold text-[var(--charcoal-gray)]">Pneumatic Tool</h4>
           <p class="text-[var(--charcoal-gray)] mb-4">High-torque tool for industrial tasks.</p>
-          <a href="/contact" class="inline-block bg-[var(--amber-glow)] text-[var(--steel-blue)] px-4 py-2 rounded hover:bg-[var(--pale-blue)] transition">Request Quote</a>
+          <button onclick="openModal('pneumatic-tool')" class="bg-[var(--amber-glow)] text-[var(--steel-blue)] px-4 py-2 rounded hover:bg-[var(--pale-blue)] transition">View Details</button>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- Modals for Industrial Hoses -->
+  <div id="rubber-hose" class="modal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal('rubber-hose')">&times;</span>
+      <h3 class="text-2xl font-semibold text-[var(--steel-blue)] mb-4">Rubber Hose Specifications</h3>
+      <ul class="text-[var(--charcoal-gray)]">
+        <li><strong>Material:</strong> Synthetic Rubber</li>
+        <li><strong>Diameter:</strong> 1 inch</li>
+        <li><strong>Pressure Rating:</strong> 300 PSI</li>
+        <li><strong>Temperature Range:</strong> -20°C to 80°C</li>
+      </ul>
+      <div class="text-center mt-6">
+        <a href="/contact" class="inline-block bg-[var(--amber-glow)] text-[var(--steel-blue)] px-4 py-2 rounded hover:bg-[var(--pale-blue)] transition">Request Quote</a>
+      </div>
+    </div>
+  </div>
+  <div id="pvc-hose" class="modal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal('pvc-hose')">&times;</span>
+      <h3 class="text-2xl font-semibold text-[var(--steel-blue)] mb-4">PVC Hose Specifications</h3>
+      <ul class="text-[var(--charcoal-gray)]">
+        <li><strong>Material:</strong> Polyvinyl Chloride</li>
+        <li><strong>Diameter:</strong> 0.75 inch</li>
+        <li><strong>Pressure Rating:</strong> 150 PSI</li>
+        <li><strong>Temperature Range:</strong> 0°C to 60°C</li>
+      </ul>
+      <div class="text-center mt-6">
+        <a href="/contact" class="inline-block bg-[var(--amber-glow)] text-[var(--steel-blue)] px-4 py-2 rounded hover:bg-[var(--pale-blue)] transition">Request Quote</a>
+      </div>
+    </div>
+  </div>
+  <div id="hydraulic-hose" class="modal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal('hydraulic-hose')">&times;</span>
+      <h3 class="text-2xl font-semibold text-[var(--steel-blue)] mb-4">Hydraulic Hose Specifications</h3>
+      <ul class="text-[var(--charcoal-gray)]">
+        <li><strong>Material:</strong> Reinforced Synthetic Rubber</li>
+        <li><strong>Diameter:</strong> 0.5 inch</li>
+        <li><strong>Pressure Rating:</strong> 500 PSI</li>
+        <li><strong>Temperature Range:</strong> -40°C to 100°C</li>
+      </ul>
+      <div class="text-center mt-6">
+        <a href="/contact" class="inline-block bg-[var(--amber-glow)] text-[var(--steel-blue)] px-4 py-2 rounded hover:bg-[var(--pale-blue)] transition">Request Quote</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modals for Pneumatic Products -->
+  <div id="pneumatic-valve" class="modal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal('pneumatic-valve')">&times;</span>
+      <h3 class="text-2xl font-semibold text-[var(--steel-blue)] mb-4">Pneumatic Valve Specifications</h3>
+      <ul class="text-[var(--charcoal-gray)]">
+        <li><strong>Material:</strong> Aluminum</li>
+        <li><strong>Port Size:</strong> 1/4 inch</li>
+        <li><strong>Pressure Range:</strong> 0-120 PSI</li>
+        <li><strong>Operating Temp:</strong> -5°C to 60°C</li>
+      </ul>
+      <div class="text-center mt-6">
+        <a href="/contact" class="inline-block bg-[var(--amber-glow)] text-[var(--steel-blue)] px-4 py-2 rounded hover:bg-[var(--pale-blue)] transition">Request Quote</a>
+      </div>
+    </div>
+  </div>
+  <div id="pneumatic-fitting" class="modal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal('pneumatic-fitting')">&times;</span>
+      <h3 class="text-2xl font-semibold text-[var(--steel-blue)] mb-4">Pneumatic Fitting Specifications</h3>
+      <ul class="text-[var(--charcoal-gray)]">
+        <li><strong>Material:</strong> Brass</li>
+        <li><strong>Thread Size:</strong> 1/8 inch NPT</li>
+        <li><strong>Pressure Range:</strong> 0-150 PSI</li>
+        <li><strong>Operating Temp:</strong> -10°C to 70°C</li>
+      </ul>
+      <div class="text-center mt-6">
+        <a href="/contact" class="inline-block bg-[var(--amber-glow)] text-[var(--steel-blue)] px-4 py-2 rounded hover:bg-[var(--pale-blue)] transition">Request Quote</a>
+      </div>
+    </div>
+  </div>
+  <div id="pneumatic-tool" class="modal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal('pneumatic-tool')">&times;</span>
+      <h3 class="text-2xl font-semibold text-[var(--steel-blue)] mb-4">Pneumatic Tool Specifications</h3>
+      <ul class="text-[var(--charcoal-gray)]">
+        <li><strong>Type:</strong> Impact Wrench</li>
+        <li><strong>Torque:</strong> 500 Nm</li>
+        <li><strong>Air Consumption:</strong> 5 CFM</li>
+        <li><strong>Operating Pressure:</strong> 90 PSI</li>
+      </ul>
+      <div class="text-center mt-6">
+        <a href="/contact" class="inline-block bg-[var(--amber-glow)] text-[var(--steel-blue)] px-4 py-2 rounded hover:bg-[var(--pale-blue)] transition">Request Quote</a>
+      </div>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer class="bg-[var(--steel-blue)] text-white p-4">
