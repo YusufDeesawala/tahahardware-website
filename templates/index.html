@@ -14,6 +14,33 @@
       --pale-blue: #F5F5F5;
       --charcoal-gray: #374151;
     }
+    .cookie-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    .cookie-modal-content {
+      background-color: var(--soft-white);
+      padding: 2rem;
+      border-radius: 0.5rem;
+      max-width: 500px;
+      width: 90%;
+      position: relative;
+    }
+    .cookie-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
     .marquee-container {
       overflow: hidden;
       width: 100%;
@@ -22,14 +49,19 @@
     }
     .marquee {
       display: flex;
-      white-space: nowrap;
+      animation: scroll 20s linear infinite;
+    }
+    .marquee:hover {
+      animation-play-state: paused;
     }
     .marquee img {
       height: 64px;
       margin: 0 2rem;
+      flex-shrink: 0;
     }
-    .marquee:hover {
-      animation-play-state: paused;
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
   </style>
 </head>
@@ -47,39 +79,50 @@
     </nav>
   </header>
 
+  <!-- Cookie Consent Popup -->
+  <div id="cookieModal" class="cookie-modal">
+    <div class="cookie-modal-content">
+      <span class="cookie-close" onclick="rejectCookies()">&times;</span>
+      <h3 class="text-2xl font-semibold text-[var(--steel-blue)] mb-4">Cookie Consent</h3>
+      <p class="text-[var(--charcoal-gray)] mb-4">This website uses cookies to enhance your experience. We may collect your email and location for follow-up communication.</p>
+      <div class="text-center space-x-4">
+        <button onclick="acceptCookies()" class="bg-[var(--amber-glow)] text-white px-6 py-2 rounded-lg hover:bg-[var(--steel-blue)] transition">Accept</button>
+        <button onclick="rejectCookies()" class="bg-[var(--pale-blue)] text-[var(--charcoal-gray)] px-6 py-2 rounded-lg hover:bg-[var(--charcoal-gray)] hover:text-[var(--soft-white)] transition">Reject</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Hero Section -->
   <section class="bg-[var(--soft-white)] py-12">
     <div class="container mx-auto text-center">
-      <h2 class="text-4xl font-bold text-[var(--charcoal-gray)] mb-4">Quality Brushes, Hoses & Pneumatic Products for Every Application</h2>
+      <h2 class="text-4xl font-bold text-[var(--charcoal-gray)] mb-4">Quality Brushes, Hoses & Pneumatic Products</h2>
       <p class="text-lg text-[var(--charcoal-gray)] mb-6">Since [year], delivering durable solutions for industries.</p>
-      <a href="/catalogue" class="inline-block bg-[var(--amber-glow)] text-[var(--steel-blue)] px-6 py-3 rounded-lg hover:bg-[var(--pale-blue)] transition">Shop Now</a>
+      <a href="/catalogue" class="inline-block bg-[var(--amber-glow)] text-white px-6 py-3 rounded-lg hover:bg-[var(--steel-blue)] transition">Shop Now</a>
     </div>
   </section>
 
   <!-- Vision Statement -->
   <section class="container mx-auto py-12">
     <h3 class="text-2xl font-semibold text-[var(--steel-blue)] mb-6 text-center">Our Vision</h3>
-    <p class="text-lg text-[var(--charcoal-gray)] max-w-2xl mx-auto">We aim to empower industries with reliable, high-quality brushes, hoses, and pneumatic products, ensuring performance and durability for every task.</p>
+    <p class="text-lg text-[var(--charcoal-gray)] max-w-2xl mx-auto">Empowering industries with reliable, high-quality brushes, hoses, and pneumatic products.</p>
   </section>
 
-  <!-- Brands We Offer (Marquee) -->
+  <!-- Brands We Offer -->
   <section class="py-12">
     <div class="container mx-auto">
       <h3 class="text-2xl font-semibold text-[var(--steel-blue)] mb-6 text-center">Brands We Offer</h3>
       <div class="marquee-container">
-        <marquee behavior="scroll" direction="left" scrollamount="5" onmouseover="this.stop()" onmouseout="this.start()">
-          <div class="marquee">
-            <img src="/static/images/brand1.png" alt="Brand 1">
-            <img src="/static/images/brand2.png" alt="Brand 2">
-            <img src="/static/images/brand3.png" alt="Brand 3">
-            <img src="/static/images/brand4.png" alt="Brand 4">
-            <!-- Duplicate images for seamless looping -->
-            <img src="/static/images/brand1.png" alt="Brand 1">
-            <img src="/static/images/brand2.png" alt="Brand 2">
-            <img src="/static/images/brand3.png" alt="Brand 3">
-            <img src="/static/images/brand4.png" alt="Brand 4">
-          </div>
-        </marquee>
+        <div class="marquee">
+          <img src="/static/images/brand1.png" alt="Brand 1">
+          <img src="/static/images/brand2.png" alt="Brand 2">
+          <img src="/static/images/brand3.png" alt="Brand 3">
+          <img src="/static/images/brand4.png" alt="Brand 4">
+          <!-- Duplicate for seamless loop -->
+          <img src="/static/images/brand1.png" alt="Brand 1">
+          <img src="/static/images/brand2.png" alt="Brand 2">
+          <img src="/static/images/brand3.png" alt="Brand 3">
+          <img src="/static/images/brand4.png" alt="Brand 4">
+        </div>
       </div>
     </div>
   </section>
@@ -88,23 +131,23 @@
   <section class="container mx-auto py-12">
     <h3 class="text-2xl font-semibold text-[var(--steel-blue)] mb-6 text-center">Featured Products</h3>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="bg-[var(--soft-white)] border border-[var(--pale-blue)] p-4 rounded-lg hover:shadow-lg transition">
+      <div class="bg-[var(--soft-white)] border border-[var(--pale-blue)] p-4 rounded-lg hover:shadow-lg">
         <img src="/static/images/industrial_brush.jpg" alt="Industrial Brushes" class="w-full h-48 object-cover rounded mb-4">
         <h4 class="text-xl font-semibold text-[var(--charcoal-gray)]">Industrial Brushes</h4>
-        <p class="text-[var(--charcoal-gray)] mb-4">Heavy-duty brushes for industrial cleaning and processing.</p>
-        <a href="/catalogue#brushes" class="inline-block bg-[var(--amber-glow)] text-[var(--steel-blue)] px-4 py-2 rounded hover:bg-[var(--pale-blue)] transition" onclick="setActiveTab('brushes')">View Details</a>
+        <p class="text-[var(--charcoal-gray)] mb-4">Heavy-duty brushes for cleaning and processing.</p>
+        <a href="/catalogue#brushes" class="inline-block bg-[var(--amber-glow)] text-white px-4 py-2 rounded hover:bg-[var(--steel-blue)]" onclick="setActiveTab('brushes')">View Details</a>
       </div>
-      <div class="bg-[var(--soft-white)] border border-[var(--pale-blue)] p-4 rounded-lg hover:shadow-lg transition">
+      <div class="bg-[var(--soft-white)] border border-[var(--pale-blue)] p-4 rounded-lg hover:shadow-lg">
         <img src="/static/images/industrial_hose.jpg" alt="Industrial Hoses" class="w-full h-48 object-cover rounded mb-4">
         <h4 class="text-xl font-semibold text-[var(--charcoal-gray)]">Industrial Hoses</h4>
-        <p class="text-[var(--charcoal-gray)] mb-4">Durable, leak-proof hoses for industrial applications.</p>
-        <a href="/catalogue#hoses" class="inline-block bg-[var(--amber-glow)] text-[var(--steel-blue)] px-4 py-2 rounded hover:bg-[var(--pale-blue)] transition" onclick="setActiveTab('hoses')">View Details</a>
+        <p class="text-[var(--charcoal-gray)] mb-4">Durable, leak-proof hoses for industrial use.</p>
+        <a href="/catalogue#hoses" class="inline-block bg-[var(--amber-glow)] text-white px-4 py-2 rounded hover:bg-[var(--steel-blue)]" onclick="setActiveTab('hoses')">View Details</a>
       </div>
-      <div class="bg-[var(--soft-white)] border border-[var(--pale-blue)] p-4 rounded-lg hover:shadow-lg transition">
+      <div class="bg-[var(--soft-white)] border border-[var(--pale-blue)] p-4 rounded-lg hover:shadow-lg">
         <img src="/static/images/pneumatic_product.jpg" alt="Pneumatic Products" class="w-full h-48 object-cover rounded mb-4">
         <h4 class="text-xl font-semibold text-[var(--charcoal-gray)]">Pneumatic Products</h4>
         <p class="text-[var(--charcoal-gray)] mb-4">High-performance pneumatic tools and fittings.</p>
-        <a href="/catalogue#pneumatic" class="inline-block bg-[var(--amber-glow)] text-[var(--steel-blue)] px-4 py-2 rounded hover:bg-[var(--pale-blue)] transition" onclick="setActiveTab('pneumatic')">View Details</a>
+        <a href="/catalogue#pneumatic" class="inline-block bg-[var(--amber-glow)] text-white px-4 py-2 rounded hover:bg-[var(--steel-blue)]" onclick="setActiveTab('pneumatic')">View Details</a>
       </div>
     </div>
   </section>
@@ -115,17 +158,17 @@
       <h3 class="text-2xl font-semibold text-[var(--steel-blue)] mb-6 text-center">Why Choose Us</h3>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="text-center">
-          <div class="text-[var(--pale-blue)] text-4xl mb-4">🚚</div>
+          <div class="text-[var(--steel-blue)] text-4xl mb-4">🚚</div>
           <h4 class="text-xl font-semibold text-[var(--charcoal-gray)]">Fast Shipping</h4>
-          <p class="text-[var(--charcoal-gray)]">Reliable delivery for retail and wholesale orders.</p>
+          <p class="text-[var(--charcoal-gray)]">Reliable delivery for all orders.</p>
         </div>
         <div class="text-center">
-          <div class="text-[var(--pale-blue)] text-4xl mb-4">💰</div>
+          <div class="text-[var(--steel-blue)] text-4xl mb-4">💰</div>
           <h4 class="text-xl font-semibold text-[var(--charcoal-gray)]">Bulk Discounts</h4>
-          <p class="text-[var(--charcoal-gray)]">Competitive pricing for wholesale clients.</p>
+          <p class="text-[var(--charcoal-gray)]">Competitive pricing for wholesale.</p>
         </div>
         <div class="text-center">
-          <div class="text-[var(--pale-blue)] text-4xl mb-4">⭐</div>
+          <div class="text-[var(--steel-blue)] text-4xl mb-4">⭐</div>
           <h4 class="text-xl font-semibold text-[var(--charcoal-gray)]">Quality Guaranteed</h4>
           <p class="text-[var(--charcoal-gray)]">Durable products you can trust.</p>
         </div>
@@ -143,5 +186,7 @@
       </div>
     </div>
   </footer>
+
+  <script src="/static/js/cookie.js"></script>
 </body>
 </html>
