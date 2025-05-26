@@ -1,33 +1,51 @@
 function showTab(tabId) {
-    // Hide all tab contents
-    document.querySelectorAll('.tab-content').forEach(content => {
-      content.classList.remove('active');
-    });
-    // Remove active class from all buttons
-    document.querySelectorAll('.tab-button').forEach(button => {
-      button.classList.remove('active');
-    });
-    // Show selected tab content
-    document.getElementById(tabId).classList.add('active');
-    // Highlight selected tab button
-    document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
-  }
-  
-  function setActiveTab(tabId) {
-    showTab(tabId);
-  }
-  
-  function openModal(modalId) {
-    document.getElementById(modalId).style.display = 'flex';
-  }
-  
-  function closeModal(modalId) {
-    document.getElementById(modalId).style.display = 'none';
-  }
-  
-  // Close modal when clicking outside
-  window.addEventListener('click', function(event) {
-    if (event.target.classList.contains('modal')) {
-      event.target.style.display = 'none';
-    }
+  // Remove active class from all buttons and contents
+  document.querySelectorAll('.tab-button').forEach(button => {
+    button.classList.remove('active');
+    button.setAttribute('aria-selected', 'false');
   });
+  document.querySelectorAll('.tab-content').forEach(content => {
+    content.classList.remove('active');
+    content.setAttribute('aria-hidden', 'true');
+  });
+
+  // Add active class to selected button and content
+  const selectedButton = document.querySelector(`.tab-button[data-tab="${tabId}"]`);
+  const selectedContent = document.getElementById(tabId);
+  if (selectedButton && selectedContent) {
+    selectedButton.classList.add('active');
+    selectedButton.setAttribute('aria-selected', 'true');
+    selectedContent.classList.add('active');
+    selectedContent.setAttribute('aria-hidden', 'false');
+  }
+
+  // Update URL hash
+  window.history.pushState(null, null, `#${tabId}`);
+}
+
+function openModal(modalId) {
+  const modal = document.getElementById(modalId);
+  if (modal) {
+    modal.style.display = 'flex';
+    modal.setAttribute('aria-hidden', 'false');
+    modal.querySelector('.modal-content').focus();
+  }
+}
+
+function closeModal(modalId) {
+  const modal = document.getElementById(modalId);
+  if (modal) {
+    modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
+  }
+}
+
+// Handle tab selection from URL hash on page load
+window.addEventListener('load', () => {
+  const hash = window.location.hash.replace('#', '');
+  if (hash && document.getElementById(hash)) {
+    showTab(hash);
+  } else {
+    showTab('brushes'); // Default tab
+  }
+});
