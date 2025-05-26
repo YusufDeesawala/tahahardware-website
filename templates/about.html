@@ -68,6 +68,7 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 2rem;
+      margin-bottom: 3rem; /* Add this line */
     }
 
     /* Founders grid styling */
@@ -215,20 +216,6 @@
       </div>
     </div>
   </footer>
-
-  <!-- Cookie Modal (Copied from Homepage) -->
-  <div id="cookieModal" class="cookie-modal" role="dialog" aria-labelledby="cookie-title">
-    <div class="cookie-content">
-      <button class="cookie-close" onclick="rejectCookies()" aria-label="Close cookie modal">×</button>
-      <h3 class="section-title" id="cookie-title" style="font-size: 1.5rem; margin-bottom: 1rem;">🍪 Cookie Consent</h3>
-      <p style="margin-bottom: 2rem; color: var(--text-muted);">This website uses cookies to enhance your experience. We may collect your email and location for follow-up communication.</p>
-      <div style="display: flex; gap: 1rem; justify-content: center;">
-        <button onclick="acceptCookies()" class="btn btn-primary" aria-label="Accept all cookies">Accept All</button>
-        <button onclick="rejectCookies()" class="btn btn-secondary" aria-label="Reject cookies">Reject</button>
-      </div>
-    </div>
-  </div>
-
   <!-- JavaScript (External) -->
   <script src="/static/js/scripts.js"></script>
 </body>
