@@ -4,85 +4,232 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Learn about Brush & Hose Co., a trusted provider of industrial brushes, hoses, and pneumatic products for retail and wholesale industries.">
+  <meta name="keywords" content="about Brush & Hose Co., industrial brushes, hoses, pneumatic products, industrial solutions">
+  <meta name="author" content="Brush & Hose Co.">
   <title>Brush & Hose Co. - About Us</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/static/css/styles.css"> <!-- Homepage CSS -->
   <style>
-    :root {
-      --steel-blue: #4682B4;
-      --soft-white: #F7FAFC;
-      --amber-glow: #A67C00;
-      --pale-blue: #F5F5F5;
-      --charcoal-gray: #374151;
+    /* Match feature-card to product-card hover animations from index.html with full-card gradient */
+    .feature-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      box-shadow: var(--shadow);
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: -1;
+    }
+
+    .feature-card:hover, .feature-card:focus-within {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+      border-color: var(--primary);
+    }
+
+    .feature-card:hover::before, .feature-card:focus-within::before {
+      transform: scaleX(1);
+    }
+
+    .feature-card:hover::after, .feature-card:focus-within::after {
+      opacity: 0.1;
+    }
+
+    /* Adjust values-grid for Our Values to ensure single line */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(200px, 1fr));
+      gap: 3rem; /* Increased margin separation */
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Founders grid styling */
+    .founders-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem; /* Increased margin separation */
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Increase margin for other feature cards */
+    .feature-card:not(.values-grid .feature-card):not(.founders-grid .feature-card) {
+      margin-bottom: 3rem; /* Increased separation between History and Mission cards */
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .values-grid, .founders-grid {
+        grid-template-columns: 1fr; /* Stack vertically on mobile */
+        gap: 2rem;
+      }
+
+      .feature-card:not(.values-grid .feature-card):not(.founders-grid .feature-card) {
+        margin-bottom: 2rem;
+      }
     }
   </style>
 </head>
-<body class="bg-[var(--soft-white)] text-[var(--charcoal-gray)] font-sans">
-  <!-- Header -->
-  <header class="bg-[var(--steel-blue)] text-white p-4 sticky top-0 z-10">
-    <nav class="container mx-auto flex justify-between items-center">
-      <h1 class="text-2xl font-bold">Brush & Hose Co.</h1>
-      <ul class="flex space-x-6">
-        <li><a href="/" class="hover:text-[var(--pale-blue)]">Home</a></li>
-        <li><a href="/about" class="hover:text-[var(--pale-blue)]">About</a></li>
-        <li><a href="/catalogue" class="hover:text-[var(--pale-blue)]">Catalogue</a></li>
-        <li><a href="/contact" class="hover:text-[var(--pale-blue)]">Contact Us</a></li>
+<body data-theme="light">
+  <!-- Navbar (Copied from Homepage) -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+      <div class="logo-container">
+        <img src="/static/images/logo-placeholder.png" alt="Brush & Hose Co. Logo" class="logo-img">
+        <div class="logo">Brush & Hose Co.</div>
+      </div>
+      <ul class="nav-links" role="menu">
+        <li role="menuitem"><a href="/" class="nav-link" tabindex="0">Home</a></li>
+        <li role="menuitem"><a href="/about" class="nav-link active" tabindex="0">About</a></li>
+        <li role="menuitem"><a href="/catalogue" class="nav-link" tabindex="0">Catalogue</a></li>
+        <li role="menuitem"><a href="/contact" class="nav-link" tabindex="0">Contact</a></li>
       </ul>
-    </nav>
-  </header>
-
-  <!-- About Section -->
-  <section class="container mx-auto py-12">
-    <h2 class="text-3xl font-bold text-[var(--steel-blue)] mb-6 text-center">About Us</h2>
-    <div class="max-w-3xl mx-auto">
-      <!-- Company History -->
-      <div class="mb-8">
-        <h3 class="text-2xl font-semibold text-[var(--charcoal-gray)] mb-4">Our History</h3>
-        <p class="text-lg text-[var(--charcoal-gray)]">
-          Founded in [year], Brush & Hose Co. has grown from a small supplier to a trusted name in industrial brushes, hoses, and pneumatic products. With a commitment to quality and reliability, we serve both retail and wholesale clients across diverse industries, delivering durable solutions that meet rigorous demands.
-        </p>
-      </div>
-
-      <!-- Mission Statement -->
-      <div class="mb-8">
-        <h3 class="text-2xl font-semibold text-[var(--charcoal-gray)] mb-4">Our Mission</h3>
-        <p class="text-lg text-[var(--charcoal-gray)]">
-          At Brush & Hose Co., our mission is to empower industries with high-performance tools and components. We strive to provide innovative, long-lasting products backed by exceptional customer service, ensuring our clients achieve efficiency and success in their operations.
-        </p>
-      </div>
-
-      <!-- Our Values -->
-      <div>
-        <h3 class="text-2xl font-semibold text-[var(--charcoal-gray)] mb-4">Our Values</h3>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="bg-[var(--pale-blue)] p-4 rounded-lg text-center">
-            <h4 class="text-xl font-semibold text-[var(--steel-blue)] mb-2">Quality</h4>
-            <p class="text-[var(--charcoal-gray)]">We source and supply only the highest-quality products to ensure durability and performance.</p>
-          </div>
-          <div class="bg-[var(--pale-blue)] p-4 rounded-lg text-center">
-            <h4 class="text-xl font-semibold text-[var(--steel-blue)] mb-2">Integrity</h4>
-            <p class="text-[var(--charcoal-gray)]">We build trust through transparent practices and reliable service.</p>
-          </div>
-          <div class="bg-[var(--pale-blue)] p-4 rounded-lg text-center">
-            <h4 class="text-xl font-semibold text-[var(--steel-blue)] mb-2">Innovation</h4>
-            <p class="text-[var(--charcoal-gray)]">We embrace cutting-edge solutions to meet evolving industry needs.</p>
-          </div>
+      <div class="nav-controls">
+        <div class="theme-toggle" role="button" aria-label="Toggle theme" tabindex="0" onclick="toggleTheme()">
+          <div class="theme-slider"></div>
+        </div>
+        <div class="mobile-menu-btn" role="button" aria-label="Toggle mobile menu" tabindex="0">
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
       </div>
     </div>
-    <div class="text-center mt-8">
-      <a href="/contact" class="inline-block bg-[var(--amber-glow)] text-[var(--steel-blue)] px-6 py-3 rounded-lg hover:bg-[var(--pale-blue)] transition">Get in Touch</a>
-    </div>
-  </section>
+  </nav>
 
-  <!-- Footer -->
-  <footer class="bg-[var(--steel-blue)] text-white p-4">
-    <div class="container mx-auto text-center">
+  <!-- About Section -->
+  <main>
+    <section class="section" aria-labelledby="about-title">
+      <div class="section-header fade-in">
+        <h2 class="section-title" id="about-title">About Us</h2>
+        <p class="section-subtitle">Discover the story behind Brush & Hose Co., a trusted name in industrial solutions since 2004.</p>
+      </div>
+      <div class="max-w-3xl mx-auto px-4">
+        <!-- Company History -->
+        <div class="feature-card fade-in stagger-1" tabindex="0">
+          <div class="feature-icon">🏭</div>
+          <h3 class="product-title">Our History</h3>
+          <p class="product-description">
+            Founded in 2004, Brush & Hose Co. has grown from a small supplier to a trusted name in industrial brushes, hoses, and pneumatic products. With a commitment to quality and reliability, we serve both retail and wholesale clients across diverse industries, delivering durable solutions that meet rigorous demands.
+          </p>
+        </div>
+
+        <!-- Mission Statement -->
+        <div class="feature-card fade-in stagger-2" tabindex="0">
+          <div class="feature-icon">🎯</div>
+          <h3 class="product-title">Our Mission</h3>
+          <p class="product-description">
+            At Brush & Hose Co., our mission is to empower industries with high-performance tools and components. We strive to provide innovative, long-lasting products backed by exceptional customer service, ensuring our clients achieve efficiency and success in their operations.
+          </p>
+        </div>
+
+        <!-- Our Values -->
+        <div class="section-header fade-in stagger-3">
+          <h3 class="section-title">Our Values</h3>
+        </div>
+        <div class="values-grid">
+          <div class="feature-card fade-in stagger-1" tabindex="0">
+            <div class="feature-icon">✅</div>
+            <h4 class="product-title">Quality</h4>
+            <p class="product-description">We source and supply only the highest-quality products to ensure durability and performance.</p>
+          </div>
+          <div class="feature-card fade-in stagger-2" tabindex="0">
+            <div class="feature-icon">🤝</div>
+            <h4 class="product-title">Integrity</h4>
+            <p class="product-description">We build trust through transparent practices and reliable service.</p>
+          </div>
+          <div class="feature-card fade-in stagger-3" tabindex="0">
+            <div class="feature-icon">💡</div>
+            <h4 class="product-title">Innovation</h4>
+            <p class="product-description">We embrace cutting-edge solutions to meet evolving industry needs.</p>
+          </div>
+        </div>
+
+        <!-- Our Founders -->
+        <div class="section-header fade-in stagger-4">
+          <h3 class="section-title">Our Founders</h3>
+        </div>
+        <div class="founders-grid">
+          <div class="feature-card fade-in stagger-1" tabindex="0">
+            <!-- Uncomment and update path if founder images are available -->
+            <!-- <div class="product-image">
+              <img src="/static/images/founder1.jpg" alt="John Doe" loading="lazy">
+            </div> -->
+            <div class="feature-icon">👤</div>
+            <h4 class="product-title">John Doe</h4>
+            <p class="product-description">Co-Founder & CEO<br>With over 20 years in industrial manufacturing, John leads Brush & Hose Co. with a vision for quality and innovation.</p>
+          </div>
+          <div class="feature-card fade-in stagger-2" tabindex="0">
+            <!-- Uncomment and update path if founder images are available -->
+            <!-- <div class="product-image">
+              <img src="/static/images/founder2.jpg" alt="Jane Smith" loading="lazy">
+            </div> -->
+            <div class="feature-icon">👤</div>
+            <h4 class="product-title">Jane Smith</h4>
+            <p class="product-description">Co-Founder & COO<br>Jane's expertise in supply chain management ensures our products reach clients efficiently and reliably.</p>
+          </div>
+        </div>
+
+        <div class="text-center mt-8 fade-in stagger-5">
+          <a href="/contact" class="btn btn-primary" role="button" aria-label="Get in Touch">Get in Touch</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer (Copied from Homepage) -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-content">
       <p>© 2025 Brush & Hose Co. All rights reserved.</p>
-      <div class="flex justify-center space-x-4 mt-4">
-        <a href="https://x.com" class="text-[var(--pale-blue)] hover:text-[var(--amber-glow)]">X</a>
-        <a href="https://instagram.com" class="text-[var(--pale-blue)] hover:text-[var(--amber-glow)]">Instagram</a>
+      <div class="footer-links">
+        <a href="https://x.com" class="footer-link" target="_blank" rel="noopener noreferrer">X</a>
+        <a href="https://instagram.com" class="footer-link" target="_blank" rel="noopener noreferrer">Instagram</a>
       </div>
     </div>
   </footer>
+
+  <!-- Cookie Modal (Copied from Homepage) -->
+  <div id="cookieModal" class="cookie-modal" role="dialog" aria-labelledby="cookie-title">
+    <div class="cookie-content">
+      <button class="cookie-close" onclick="rejectCookies()" aria-label="Close cookie modal">×</button>
+      <h3 class="section-title" id="cookie-title" style="font-size: 1.5rem; margin-bottom: 1rem;">🍪 Cookie Consent</h3>
+      <p style="margin-bottom: 2rem; color: var(--text-muted);">This website uses cookies to enhance your experience. We may collect your email and location for follow-up communication.</p>
+      <div style="display: flex; gap: 1rem; justify-content: center;">
+        <button onclick="acceptCookies()" class="btn btn-primary" aria-label="Accept all cookies">Accept All</button>
+        <button onclick="rejectCookies()" class="btn btn-secondary" aria-label="Reject cookies">Reject</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript (External) -->
+  <script src="/static/js/scripts.js"></script>
 </body>
 </html>
