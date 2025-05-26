@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Quality brushes, hoses, and pneumatic products for retail and wholesale. Durable solutions for industries.">
+  <meta name="description"
+    content="Quality brushes, hoses, and pneumatic products for retail and wholesale. Durable solutions for industries.">
   <meta name="keywords" content="industrial brushes, hoses, pneumatic products, Taha Hardware, industrial solutions">
   <meta name="author" content="Taha Hardware">
   <title>Taha Hardware - Home</title>
@@ -41,8 +43,8 @@
       --text: var(--text-dark);
       --text-muted: var(--text-muted-dark);
       --shadow: var(--shadow-light);
-      --navbar-bg: rgba(248, 250, 252, 0.8);
-      --navbar-scrolled-bg: rgba(248, 250, 252, 0.95);
+      --navbar-bg: rgba(255, 255, 255, 0.95);
+      --navbar-scrolled-bg: rgba(255, 255, 255, 0.98);
       --hero-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     }
 
@@ -87,22 +89,23 @@
       z-index: 1000;
       background: var(--navbar-bg);
       backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--glass-border);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border-bottom: 1px solid var(--border);
+      transition: all 0.3s ease;
+      padding: 1rem 0;
     }
 
     .navbar.scrolled {
       background: var(--navbar-scrolled-bg);
-      backdrop-filter: blur(25px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     }
 
     .nav-container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 1rem 2rem;
+      padding: 0 2rem;
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
     }
 
     .logo-container {
@@ -112,19 +115,21 @@
     }
 
     .logo-img {
-      height: 40px;
       width: 40px;
-      object-fit: contain;
-      transition: transform 0.3s ease;
-    }
-
-    .logo-img:hover {
-      transform: scale(1.1);
+      height: 40px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 1.2rem;
     }
 
     .logo {
       font-size: 1.5rem;
-      font-weight: 700;
+      font-weight: 800;
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -133,40 +138,32 @@
 
     .nav-links {
       display: flex;
-      gap: 2rem;
       list-style: none;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
     }
 
     .nav-link {
-      position: relative;
-      padding: 0.5rem 1rem;
-      color: var(--text);
       text-decoration: none;
+      color: var(--text);
       font-weight: 500;
-      border-radius: 50px;
+      padding: 0.75rem 1.5rem;
+      border-radius: 12px;
       transition: all 0.3s ease;
+      position: relative;
     }
 
-    .nav-link::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: var(--glass-bg);
-      border-radius: 50px;
-      opacity: 0;
-      transition: all 0.3s ease;
-    }
-
-    .nav-link:hover, .nav-link:focus {
+    .nav-link:hover {
       color: var(--primary);
+      background: rgba(37, 99, 235, 0.1);
       transform: translateY(-2px);
     }
 
-    .nav-link:hover::before {
-      opacity: 1;
+    .nav-link.active {
+      color: white;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
     }
 
     .nav-controls {
@@ -186,7 +183,8 @@
       transition: all 0.3s ease;
     }
 
-    .theme-toggle:hover, .theme-toggle:focus {
+    .theme-toggle:hover,
+    .theme-toggle:focus {
       border-color: var(--primary);
       box-shadow: 0 0 8px var(--primary);
     }
@@ -224,13 +222,11 @@
       gap: 4px;
       cursor: pointer;
       padding: 8px;
-      background: var(--glass-bg);
-      border-radius: 8px;
     }
 
     .mobile-menu-btn span {
-      width: 25px;
-      height: 3px;
+      width: 24px;
+      height: 2px;
       background: var(--text);
       border-radius: 2px;
       transition: all 0.3s ease;
@@ -262,8 +258,15 @@
     }
 
     @keyframes slideIn {
-      from { transform: translateY(-10px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
+      from {
+        transform: translateY(-10px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
 
     /* Hero Section */
@@ -361,7 +364,8 @@
       box-shadow: 0 4px 20px rgba(37, 99, 235, 0.5);
     }
 
-    .btn-primary:hover, .btn-primary:focus {
+    .btn-primary:hover,
+    .btn-primary:focus {
       transform: translateY(-3px);
       box-shadow: 0 8px 30px rgba(37, 99, 235, 0.4);
     }
@@ -373,7 +377,8 @@
       backdrop-filter: blur(10px);
     }
 
-    .btn-secondary:hover, .btn-secondary:focus {
+    .btn-secondary:hover,
+    .btn-secondary:focus {
       background: rgba(255, 255, 255, 0.2);
       transform: translateY(-2px);
       box-shadow: var(--shadow);
@@ -386,11 +391,12 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
       transition: left 0.5s;
     }
 
-    .btn:hover::before, .btn:focus::before {
+    .btn:hover::before,
+    .btn:focus::before {
       left: 100%;
     }
 
@@ -488,11 +494,13 @@
       transition: transform 0.3s ease;
     }
 
-    .product-card:hover::before, .product-card:focus-within::before {
+    .product-card:hover::before,
+    .product-card:focus-within::before {
       transform: scaleX(1);
     }
 
-    .product-card:hover, .product-card:focus-within {
+    .product-card:hover,
+    .product-card:focus-within {
       transform: translateY(-10px) scale(1.02);
       box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
       border-color: var(--primary);
@@ -565,11 +573,13 @@
       transition: opacity 0.3s ease;
     }
 
-    .feature-card:hover::before, .feature-card:focus-within::before {
+    .feature-card:hover::before,
+    .feature-card:focus-within::before {
       opacity: 0.05;
     }
 
-    .feature-card:hover, .feature-card:focus-within {
+    .feature-card:hover,
+    .feature-card:focus-within {
       transform: translateY(-5px);
       box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
     }
@@ -581,7 +591,8 @@
       transition: transform 0.3s ease;
     }
 
-    .feature-card:hover .feature-icon, .feature-card:focus-within .feature-icon {
+    .feature-card:hover .feature-icon,
+    .feature-card:focus-within .feature-icon {
       transform: scale(1.1) rotate(5deg);
     }
 
@@ -685,7 +696,8 @@
       transition: all 0.3s ease;
     }
 
-    .cookie-close:hover, .cookie-close:focus {
+    .cookie-close:hover,
+    .cookie-close:focus {
       background: var(--primary);
       color: white;
     }
@@ -717,29 +729,56 @@
       transition: color 0.3s ease;
     }
 
-    .footer-link:hover, .footer-link:focus {
+    .footer-link:hover,
+    .footer-link:focus {
       color: var(--secondary);
     }
 
     /* Animations */
     @keyframes slideInUp {
-      from { opacity: 0; transform: translateY(50px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     @keyframes float {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-20px) rotate(5deg); }
+
+      0%,
+      100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-20px) rotate(5deg);
+      }
     }
 
     @keyframes scroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
     }
 
     @keyframes modalSlideIn {
-      from { opacity: 0; transform: scale(0.9) translateY(20px); }
-      to { opacity: 1; transform: scale(1) translateY(0); }
+      from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
     }
 
     /* Responsive Design */
@@ -757,7 +796,8 @@
         align-items: center;
       }
 
-      .products-grid, .features-grid {
+      .products-grid,
+      .features-grid {
         grid-template-columns: 1fr;
         padding: 0 1rem;
       }
@@ -783,9 +823,17 @@
       transform: translateY(0);
     }
 
-    .stagger-1 { transition-delay: 0.1s; }
-    .stagger-2 { transition-delay: 0.2s; }
-    .stagger-3 { transition-delay: 0.3s; }
+    .stagger-1 {
+      transition-delay: 0.1s;
+    }
+
+    .stagger-2 {
+      transition-delay: 0.2s;
+    }
+
+    .stagger-3 {
+      transition-delay: 0.3s;
+    }
 
     .btn {
       position: relative;
@@ -802,10 +850,14 @@
     }
 
     @keyframes rippleAnimation {
-      to { transform: scale(4); opacity: 0; }
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
     }
   </style>
 </head>
+
 <body data-theme="light">
   <!-- Navbar -->
   <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
@@ -814,7 +866,7 @@
         <img src="/static/images/logo-placeholder.png" alt="Taha Hardware Logo" class="logo-img">
         <div class="logo">Taha Hardware</div>
       </div>
-      
+
       <ul class="nav-links" role="menu">
         <li role="menuitem"><a href="/" class="nav-link" tabindex="0">Home</a></li>
         <li role="menuitem"><a href="/about" class="nav-link" tabindex="0">About</a></li>
@@ -840,7 +892,8 @@
     <div class="floating-shape"></div>
     <div class="hero-content">
       <h1 class="hero-title">Premium Industrial Solutions</h1>
-      <p class="hero-subtitle">Quality brushes, hoses & pneumatic products for industries worldwide. Trusted since 2004 for durability and performance.</p>
+      <p class="hero-subtitle">Quality brushes, hoses & pneumatic products for industries worldwide. Trusted since 2004
+        for durability and performance.</p>
       <div class="hero-cta">
         <a href="/catalogue" class="btn btn-primary" role="button" aria-label="Explore Products">
           Explore Products
@@ -855,7 +908,8 @@
   <section class="section" aria-labelledby="vision-title">
     <div class="section-header fade-in">
       <h2 class="section-title" id="vision-title">Our Vision</h2>
-      <p class="section-subtitle">Empowering industries with reliable, high-quality solutions that exceed expectations and drive success across every sector.</p>
+      <p class="section-subtitle">Empowering industries with reliable, high-quality solutions that exceed expectations
+        and drive success across every sector.</p>
     </div>
   </section>
 
@@ -879,7 +933,8 @@
   <section class="section" aria-labelledby="products-title">
     <div class="section-header fade-in">
       <h2 class="section-title" id="products-title">Featured Products</h2>
-      <p class="section-subtitle">Discover our premium range of industrial-grade products designed for maximum performance and durability.</p>
+      <p class="section-subtitle">Discover our premium range of industrial-grade products designed for maximum
+        performance and durability.</p>
     </div>
 
     <div class="products-grid">
@@ -889,8 +944,10 @@
         </div>
         <div class="product-content">
           <h3 class="product-title">Industrial Brushes</h3>
-          <p class="product-description">Heavy-duty brushes engineered for cleaning and processing applications across multiple industries.</p>
-          <a href="/catalogue#brushes" class="btn btn-primary" onclick="setActiveTab('brushes')" role="button" aria-label="View Industrial Brushes">View Details</a>
+          <p class="product-description">Heavy-duty brushes engineered for cleaning and processing applications across
+            multiple industries.</p>
+          <a href="/catalogue#brushes" class="btn btn-primary" onclick="setActiveTab('brushes')" role="button"
+            aria-label="View Industrial Brushes">View Details</a>
         </div>
       </div>
 
@@ -900,8 +957,10 @@
         </div>
         <div class="product-content">
           <h3 class="product-title">Industrial Hoses</h3>
-          <p class="product-description">Durable, leak-proof hoses designed to withstand the most demanding industrial environments.</p>
-          <a href="/catalogue#hoses" class="btn btn-primary" onclick="setActiveTab('hoses')" role="button" aria-label="View Industrial Hoses">View Details</a>
+          <p class="product-description">Durable, leak-proof hoses designed to withstand the most demanding industrial
+            environments.</p>
+          <a href="/catalogue#hoses" class="btn btn-primary" onclick="setActiveTab('hoses')" role="button"
+            aria-label="View Industrial Hoses">View Details</a>
         </div>
       </div>
 
@@ -911,37 +970,44 @@
         </div>
         <div class="product-content">
           <h3 class="product-title">Pneumatic Products</h3>
-          <p class="product-description">High-performance pneumatic tools and fittings for precision and reliability in every application.</p>
-          <a href="/catalogue#pneumatic" class="btn btn-primary" onclick="setActiveTab('pneumatic')" role="button" aria-label="View Pneumatic Products">View Details</a>
+          <p class="product-description">High-performance pneumatic tools and fittings for precision and reliability in
+            every application.</p>
+          <a href="/catalogue#pneumatic" class="btn btn-primary" onclick="setActiveTab('pneumatic')" role="button"
+            aria-label="View Pneumatic Products">View Details</a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Why Choose Us -->
-  <section class="section" style="background: var(--surface); transition: background 0.3s ease;" aria-labelledby="features-title">
+  <section class="section" style="background: var(--surface); transition: background 0.3s ease;"
+    aria-labelledby="features-title">
     <div class="section-header fade-in">
       <h2 class="section-title" id="features-title">Why Choose Us</h2>
-      <p class="section-subtitle">Experience the difference with our commitment to quality, service, and customer satisfaction.</p>
+      <p class="section-subtitle">Experience the difference with our commitment to quality, service, and customer
+        satisfaction.</p>
     </div>
 
     <div class="features-grid">
       <div class="feature-card fade-in stagger-1" tabindex="0">
         <div class="feature-icon">🚚</div>
         <h3 class="product-title">Fast Shipping</h3>
-        <p class="product-description">Reliable delivery for all orders with real-time tracking and expedited options available.</p>
+        <p class="product-description">Reliable delivery for all orders with real-time tracking and expedited options
+          available.</p>
       </div>
 
       <div class="feature-card fade-in stagger-2" tabindex="0">
         <div class="feature-icon">💰</div>
         <h3 class="product-title">Bulk Discounts</h3>
-        <p class="product-description">Competitive pricing for wholesale and bulk orders with flexible payment terms.</p>
+        <p class="product-description">Competitive pricing for wholesale and bulk orders with flexible payment terms.
+        </p>
       </div>
 
       <div class="feature-card fade-in stagger-3" tabindex="0">
         <div class="feature-icon">⭐</div>
         <h3 class="product-title">Quality Guaranteed</h3>
-        <p class="product-description">Premium products backed by comprehensive warranty coverage and expert support.</p>
+        <p class="product-description">Premium products backed by comprehensive warranty coverage and expert support.
+        </p>
       </div>
     </div>
   </section>
@@ -962,7 +1028,8 @@
     <div class="cookie-content">
       <button class="cookie-close" onclick="rejectCookies()" aria-label="Close cookie modal">×</button>
       <h3 class="section-title" id="cookie-title" style="font-size: 1.5rem; margin-bottom: 1rem;">🍪 Cookie Consent</h3>
-      <p style="margin-bottom: 2rem; color: var(--text-muted);">This website uses cookies to enhance your experience. We may collect your email and location for follow-up communication.</p>
+      <p style="margin-bottom: 2rem; color: var(--text-muted);">This website uses cookies to enhance your experience. We
+        may collect your email and location for follow-up communication.</p>
       <div style="display: flex; gap: 1rem; justify-content: center;">
         <button onclick="acceptCookies()" class="btn btn-primary" aria-label="Accept all cookies">Accept All</button>
         <button onclick="rejectCookies()" class="btn btn-secondary" aria-label="Reject cookies">Reject</button>
@@ -1198,4 +1265,5 @@
     });
   </script>
 </body>
+
 </html>
