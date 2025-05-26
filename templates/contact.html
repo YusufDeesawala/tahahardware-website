@@ -4,77 +4,178 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Contact Brush & Hose Co. for inquiries and quotation requests for industrial brushes, hoses, and pneumatic products.">
+  <meta name="keywords" content="Brush & Hose Co. contact, industrial brushes, industrial hoses, pneumatic products">
+  <meta name="author" content="Brush & Hose Co.">
   <title>Brush & Hose Co. - Contact Us</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/static/css/styles.css"> <!-- Homepage CSS -->
   <style>
-    :root {
-      --steel-blue: #4682B4;
-      --soft-white: #F7FAFC;
-      --amber-glow: #A67C00;
-      --pale-blue: #F5F5F5;
-      --charcoal-gray: #374151;
+    /* Match feature-card to index.html product-card with full-card gradient */
+    .feature-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      box-shadow: var(--shadow);
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: -1;
+    }
+
+    .feature-card:hover, .feature-card:focus-within {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+      border-color: var(--primary);
+    }
+
+    .feature-card:hover::before, .feature-card:focus-within::before {
+      transform: scaleX(1);
+    }
+
+    .feature-card:hover::after, .feature-card:focus-within::after {
+      opacity: 0.1;
+    }
+
+    /* Form input styling */
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--card);
+      color: var(--text);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.2);
+    }
+
+    .form-label {
+      display: block;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    /* Consistent spacing for form section */
+    .contact-form-section {
+      margin-bottom: 3rem; /* Consistent with About Us and Catalogue pages */
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .contact-form-section {
+        margin-bottom: 2rem;
+      }
     }
   </style>
 </head>
-<body class="bg-[var(--soft-white)] text-[var(--charcoal-gray)] font-sans">
-  <!-- Header -->
-  <header class="bg-[var(--steel-blue)] text-white p-4 sticky top-0 z-10">
-    <nav class="container mx-auto flex justify-between items-center">
-      <h1 class="text-2xl font-bold">Brush & Hose Co.</h1>
-      <ul class="flex space-x-6">
-        <li><a href="/" class="hover:text-[var(--pale-blue)]">Home</a></li>
-        <li><a href="/about" class="hover:text-[var(--pale-blue)]">About</a></li>
-        <li><a href="/catalogue" class="hover:text-[var(--pale-blue)]">Catalogue</a></li>
-        <li><a href="/contact" class="hover:text-[var(--pale-blue)]">Contact Us</a></li>
+<body data-theme="light">
+  <!-- Navbar (Copied from Homepage/About Us/Catalogue) -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+      <div class="logo-container">
+        <img src="/static/images/logo-placeholder.png" alt="Brush & Hose Co. Logo" class="logo-img">
+        <div class="logo">Brush & Hose Co.</div>
+      </div>
+      <ul class="nav-links" role="menu">
+        <li role="menuitem"><a href="/" class="nav-link" tabindex="0">Home</a></li>
+        <li role="menuitem"><a href="/about" class="nav-link" tabindex="0">About</a></li>
+        <li role="menuitem"><a href="/catalogue" class="nav-link" tabindex="0">Catalogue</a></li>
+        <li role="menuitem"><a href="/contact" class="nav-link active" tabindex="0">Contact</a></li>
       </ul>
-    </nav>
-  </header>
+      <div class="nav-controls">
+        <div class="theme-toggle" role="button" aria-label="Toggle theme" tabindex="0" onclick="toggleTheme()">
+          <div class="theme-slider"></div>
+        </div>
+        <div class="mobile-menu-btn" role="button" aria-label="Toggle mobile menu" tabindex="0">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
 
   <!-- Contact Section -->
-  <section class="container mx-auto py-12">
-    <h2 class="text-3xl font-bold text-[var(--steel-blue)] mb-6 text-center">Contact Us</h2>
-    <div class="max-w-2xl mx-auto">
-      <p class="text-lg text-[var(--charcoal-gray)] mb-4 text-center">Reach out for inquiries or to request a quotation for our industrial brushes, hoses, and pneumatic products.</p>
-      <div class="text-center mb-8">
-        <p class="text-xl font-semibold text-[var(--charcoal-gray)]">Phone: <a href="tel:+18005551234" class="text-[var(--steel-blue)] hover:text-[var(--amber-glow)]">+1-800-555-1234</a></p>
+  <main>
+    <section class="section" aria-labelledby="contact-title">
+      <div class="section-header fade-in">
+        <h2 class="section-title" id="contact-title">Contact Us</h2>
+        <p class="section-subtitle">Reach out for inquiries or to request a quotation for our industrial brushes, hoses, and pneumatic products.</p>
       </div>
-      <form action="/contact/submit" method="POST" class="bg-[var(--pale-blue)] p-6 rounded-lg shadow-md">
-        <div class="mb-4">
-          <label for="name" class="block text-[var(--charcoal-gray)] font-semibold mb-2">Name</label>
-          <input type="text" id="name" name="name" required class="w-full p-2 border border-[var(--steel-blue)] rounded focus:outline-none focus:ring-2 focus:ring-[var(--amber-glow)]">
+      <div class="max-w-3xl mx-auto px-4">
+        <div class="text-center mb-8 fade-in stagger-1">
+          <p class="text-xl font-semibold">Phone: <a href="tel:+18005551234" class="text-[var(--primary)] hover:text-[var(--secondary)] transition">+1-800-555-1234</a></p>
         </div>
-        <div class="mb-4">
-          <label for="email" class="block text-[var(--charcoal-gray)] font-semibold mb-2">Email</label>
-          <input type="email" id="email" name="email" required class="w-full p-2 border border-[var(--steel-blue)] rounded focus:outline-none focus:ring-2 focus:ring-[var(--amber-glow)]">
+        <div class="feature-card contact-form-section fade-in stagger-2" tabindex="0">
+          <form action="/contact/submit" method="POST" class="p-6">
+            <div class="mb-4">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" id="name" name="name" required class="form-input" aria-required="true">
+            </div>
+            <div class="mb-4">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" id="email" name="email" required class="form-input" aria-required="true">
+            </div>
+            <div class="mb-4">
+              <label for="category" class="form-label">Product Category</label>
+              <select id="category" name="category" required class="form-select" aria-required="true">
+                <option value="Industrial Brushes">Industrial Brushes</option>
+                <option value="Industrial Hoses">Industrial Hoses</option>
+                <option value="Pneumatic Products">Pneumatic Products</option>
+              </select>
+            </div>
+            <div class="mb-4">
+              <label for="message" class="form-label">Message</label>
+              <textarea id="message" name="message" rows="5" required class="form-textarea" aria-required="true"></textarea>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary" role="button" aria-label="Submit Request">Submit Request</button>
+            </div>
+          </form>
         </div>
-        <div class="mb-4">
-          <label for="category" class="block text-[var(--charcoal-gray)] font-semibold mb-2">Product Category</label>
-          <select id="category" name="category" required class="w-full p-2 border border-[var(--steel-blue)] rounded focus:outline-none focus:ring-2 focus:ring-[var(--amber-glow)]">
-            <option value="Industrial Brushes">Industrial Brushes</option>
-            <option value="Industrial Hoses">Industrial Hoses</option>
-            <option value="Pneumatic Products">Pneumatic Products</option>
-          </select>
-        </div>
-        <div class="mb-4">
-          <label for="message" class="block text-[var(--charcoal-gray)] font-semibold mb-2">Message</label>
-          <textarea id="message" name="message" rows="5" required class="w-full p-2 border border-[var(--steel-blue)] rounded focus:outline-none focus:ring-2 focus:ring-[var(--amber-glow)]"></textarea>
-        </div>
-        <div class="text-center">
-          <button type="submit" class="bg-[var(--amber-glow)] text-[var(--steel-blue)] px-6 py-2 rounded-lg hover:bg-[var(--pale-blue)] transition">Submit Request</button>
-        </div>
-      </form>
-    </div>
-  </section>
+      </div>
+    </section>
+  </main>
 
-  <!-- Footer -->
-  <footer class="bg-[var(--steel-blue)] text-white p-4">
-    <div class="container mx-auto text-center">
+  <!-- Footer (Copied from Homepage/About Us/Catalogue) -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-content">
       <p>© 2025 Brush & Hose Co. All rights reserved.</p>
-      <div class="flex justify-center space-x-4 mt-4">
-        <a href="https://x.com" class="text-[var(--pale-blue)] hover:text-[var(--amber-glow)]">X</a>
-        <a href="https://instagram.com" class="text-[var(--pale-blue)] hover:text-[var(--amber-glow)]">Instagram</a>
+      <div class="footer-links">
+        <a href="https://x.com" class="footer-link" target="_blank" rel="noopener noreferrer">X</a>
+        <a href="https://instagram.com" class="footer-link" target="_blank" rel="noopener noreferrer">Instagram</a>
       </div>
     </div>
   </footer>
-</body>
-</html>
+
+  <!-- JavaScript -->
+  <script src="/static/js/scripts.js"></script>
