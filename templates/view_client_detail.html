@@ -3,85 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="View client details for Brush & Hose Co.">
-  <title>Brush & Hose Co. - View Client Details</title>
+  <title>Client Details - Taha Hardware</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    :root {
-      --steel-blue: #4682B4;
-      --soft-white: #F7FAFC;
-      --amber-glow: #A67C00;
-      --pale-blue: #F5F5F5;
-      --charcoal-gray: #374151;
-    }
-    #content {
-      display: none;
-    }
-    #error {
-      display: none;
-      color: red;
-    }
-  </style>
+  <link rel="stylesheet" href="/static/css/styles.css">
 </head>
-<body class="bg-[var(--soft-white)] text-[var(--charcoal-gray)] font-sans">
-  <!-- Header -->
-  <header class="bg-[var(--steel-blue)] text-white p-4 sticky top-0 z-10">
-    <nav class="container mx-auto flex justify-between items-center">
-      <h1 class="text-2xl font-bold">Brush & Hose Co.</h1>
-      <ul class="flex space-x-6">
-        <li><a href="/" class="hover:text-[var(--pale-blue)]">Home</a></li>
-        <li><a href="/about" class="hover:text-[var(--pale-blue)]">About</a></li>
-        <li><a href="/catalogue" class="hover:text-[var(--pale-blue)]">Catalogue</a></li>
-        <li><a href="/contact" class="hover:text-[var(--pale-blue)]">Contact Us</a></li>
-      </ul>
-    </nav>
-  </header>
+<body data-theme="light" class="bg-gray-100">
+  <div class="container mx-auto p-4">
+    <h1 class="text-3xl font-bold text-center mb-6">Client Details</h1>
+    
+    <!-- Password Form -->
+    <div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
+      <form method="POST" action="/view_client_detail">
+        <div class="mb-4">
+          <label for="password" class="block text-sm font-medium text-gray-700">Enter Password</label>
+          <input type="password" id="password" name="password" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500" required>
+        </div>
+        <button type="submit" class="w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700">Submit</button>
+      </form>
+      
+      <!-- Error Message -->
+      {% if error %}
+        <p class="mt-4 text-red-600 text-center">{{ error }}</p>
+      {% endif %}
+    </div>
 
-  <!-- Client Details Section -->
-  <section class="container mx-auto py-12">
-    <div id="error" class="text-center text-lg mb-4">Incorrect password. Please reload and try again.</div>
-    <div id="content">
-      <h2 class="text-3xl font-bold text-[var(--steel-blue)] mb-6 text-center">Client Details</h2>
-      <div class="overflow-x-auto">
-        <table class="min-w-full bg-[var(--pale-blue)] border border-[var(--steel-blue)] rounded-lg">
-          <thead>
-            <tr class="bg-[var(--steel-blue)] text-[var(--soft-white)]">
-              <th class="py-2 px-4 border-b">ID</th>
-              <th class="py-2 px-4 border-b">Email Address</th>
-              <th class="py-2 px-4 border-b">Location</th>
-              <th class="py-2 px-4 border-b">Created At</th>
+    <!-- Client Details Table -->
+    {% if users is not none and users|length > 0 %}
+      <div class="mt-8 overflow-x-auto">
+        <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email Address</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created At</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody class="divide-y divide-gray-200">
             {% for user in users %}
-            <tr class="hover:bg-[var(--soft-white)]">
-              <td class="py-2 px-4 border-b text-center">{{ user.id }}</td>
-              <td class="py-2 px-4 border-b">{{ user.email_address }}</td>
-              <td class="py-2 px-4 border-b">{{ user.location or '-' }}</td>
-              <td class="py-2 px-4 border-b">{{ user.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</td>
-            </tr>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ user.id }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ user.name }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ user.email_address }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ user.location }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ user.created_at }}</td>
+              </tr>
             {% endfor %}
           </tbody>
         </table>
       </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-[var(--steel-blue)] text-white p-4">
-    <div class="container mx-auto text-center">
-      <p>© 2025 Brush & Hose Co. All rights reserved.</p>
-      <div class="flex justify-center space-x-4 mt-4">
-        <a href="https://x.com" class="text-[var(--pale-blue)] hover:text-[var(--amber-glow)]">X</a>
-        <a href="https://instagram.com" class="text-[var(--pale-blue)] hover:text-[var(--amber-glow)]">Instagram</a>
-      </div>
-    </div>
-  </footer>
-
+    {% elif users is not none %}
+      <p class="mt-8 text-center text-gray-600">No client data available.</p>
+    {% endif %}
+  </div>
   <script src="/static/js/password.js"></script>
-  <script>
-    const adminPassword = "{{ admin_password }}";
-    checkPassword(adminPassword);
-  </script>
 </body>
 </html>

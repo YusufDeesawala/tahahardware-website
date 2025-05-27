@@ -1,24 +1,31 @@
 from flask import Flask, render_template, request, redirect, url_for, make_response, jsonify
 from flask_cors import CORS
 from models.user import db, User
+from dotenv import load_dotenv
 import os
+
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
 
-# Configure database
-if os.getenv('DATABASE_URL'):
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL').replace('postgres://', 'postgresql://')
-else:
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///brush_hose.db'
+basedir = os.path.abspath(os.path.dirname(__file__))
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'instance', 'brush_hose.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-# Initialize SQLAlchemy
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'your-secret-key')
+app.config['DEBUG'] = True
 db.init_app(app)
 
-# Create database tables
+instance_path = os.path.join(basedir, 'instance')
+if not os.path.exists(instance_path):
+    os.makedirs(instance_path)
+
 with app.app_context():
-    db.create_all()
+    try:
+        db.create_all()
+        print("Database tables created successfully")
+    except Exception as e:
+        print(f"Error creating database tables: {e}")
 
 @app.route('/')
 def home():
@@ -49,39 +56,39 @@ def contact_submit():
 def store_user():
     try:
         data = request.get_json()
-        print(f"Received data: {data}")
-        if not data:
-            print("Error: No data provided")
-            return jsonify({'error': 'No data provided'}), 400
-
+        name = data.get('name')
         email_address = data.get('email_address')
         location = data.get('location')
 
-        if not email_address or '@' not in email_address:
-            print("Error: Invalid email address")
-            return jsonify({'error': 'Valid email address required'}), 400
+        if not all([name, email_address, location]):
+            return jsonify({'error': 'Missing required fields'}), 400
 
-        existing_user = User.query.filter_by(email_address=email_address).first()
-        if existing_user:
-            print(f"User already exists: {email_address}")
-            return jsonify({'message': 'User already exists'}), 200
-
-        user = User(email_address=email_address, location=location)
-        db.session.add(user)
+        new_user = User(name=name, email_address=email_address, location=location)
+        db.session.add(new_user)
         db.session.commit()
-        print(f"User stored: {email_address}, {location}")
-
-        return jsonify({'message': 'User stored successfully'}), 200
+        return jsonify({'message': 'User stored successfully'})
     except Exception as e:
         db.session.rollback()
-        print(f"Error storing user: {str(e)}")
-        return jsonify({'error': 'Failed to store user'}), 500
+        return jsonify({'error': str(e)}), 500
 
-@app.route('/view_client_detail')
+@app.route('/view_client_detail', methods=['GET', 'POST'])
 def view_client_detail():
-    users = User.query.all()
-    admin_password = os.getenv('ADMIN_PASSWORD', 'default_password')
-    return render_template('view_client_detail.html', users=users, admin_password=admin_password)
+    if request.method == 'POST':
+        password = request.form.get('password', '').strip()
+        expected_password = os.getenv('ADMIN_PASSWORD', 'admin').strip()
+        print(f"Received password: '{password}', Expected: '{expected_password}'")
+        if password == expected_password:
+            try:
+                users = User.query.all() or []
+                print(f"Queried users: {len(users)} found")
+                return render_template('view_client_detail.html', users=users, error=None)
+            except Exception as e:
+                print(f"Error querying users: {e}")
+                return render_template('view_client_detail.html', users=[], error="Database error. Please try again.")
+        else:
+            print("Password incorrect")
+            return render_template('view_client_detail.html', users=None, error='Incorrect password. Please try again.')
+    return render_template('view_client_detail.html', users=None, error=None)
 
 if __name__ == '__main__':
     app.run(debug=True)
