@@ -8,73 +8,185 @@
   <meta name="author" content="Brush & Hose Co.">
   <title>Brush & Hose Co. - Contact Us</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="/static/css/styles.css"> <!-- Homepage CSS -->
+  <link rel="stylesheet" href="/static/css/styles.css">
   <style>
-    /* Match feature-card to index.html product-card with full-card gradient */
-    .feature-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --text: #1f2937;
+      --text-light: #6b7280;
+      --bg: #ffffff;
+      --bg-secondary: #f8fafc;
+      --border: #e5e7eb;
+      --border-light: #f3f4f6;
+    }
+
+    [data-theme="dark"] {
+      --primary: #3b82f6;
+      --primary-dark: #2563eb;
+      --text: #f9fafb;
+      --text-light: #9ca3af;
+      --bg: #0f172a;
+      --bg-secondary: #1e293b;
+      --border: #334155;
+      --border-light: #475569;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    /* Navbar */
+    .nav-link.active {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      border-radius: 10px;
+      padding: 10px 18px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .nav-link.active:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+    }
+
+    /* Hero Section */
+    .hero-section {
+      padding: 8rem 2rem 4rem;
+      text-align: center;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
       position: relative;
-      box-shadow: var(--shadow);
+      overflow: hidden;
     }
 
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      transform: scaleX(0);
-      transition: transform 0.3s ease;
-    }
-
-    .feature-card::after {
+    .hero-section::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      opacity: 0;
-      transition: opacity 0.4s ease;
-      z-index: -1;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="150" fill="url(%23a)"/><circle cx="800" cy="300" r="200" fill="url(%23a)"/><circle cx="400" cy="700" r="100" fill="url(%23a)"/></svg>');
+      opacity: 0.3;
     }
 
-    .feature-card:hover, .feature-card:focus-within {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-      border-color: var(--primary);
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
     }
 
-    .feature-card:hover::before, .feature-card:focus-within::before {
-      transform: scaleX(1);
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      line-height: 1.1;
     }
 
-    .feature-card:hover::after, .feature-card:focus-within::after {
-      opacity: 0.1;
+    .hero-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+      border-radius: 2px;
     }
 
-    /* Form input styling */
-    .form-input, .form-select, .form-textarea {
-      width: 100%;
-      padding: 0.75rem;
+    .hero-subtitle {
+      font-size: 1.25rem;
+      opacity: 0.9;
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    /* Contact Cards */
+    .contact-card {
+      background: var(--bg);
       border: 1px solid var(--border);
-      border-radius: 8px;
-      background: var(--card);
-      color: var(--text);
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
     }
 
-    .form-input:focus, .form-select:focus, .form-textarea:focus {
-      outline: none;
+    .contact-card:hover {
       border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.2);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .contact-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+      border-radius: 16px 16px 0 0;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .contact-card:hover::before {
+      opacity: 1;
+    }
+
+    .contact-icon {
+      width: 56px;
+      height: 56px;
+      background: var(--bg-secondary);
+      border: 2px solid var(--border-light);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      color: var(--text);
+      font-size: 24px;
+      transition: all 0.3s ease;
+    }
+
+    .contact-card:hover .contact-icon {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+      transform: scale(1.05);
+    }
+
+    /* Form */
+    .form-container {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .form-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+      border-radius: 16px 16px 0 0;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
     }
 
     .form-label {
@@ -82,23 +194,113 @@
       font-weight: 600;
       color: var(--text);
       margin-bottom: 0.5rem;
+      font-size: 0.875rem;
     }
 
-    /* Consistent spacing for form section */
-    .contact-form-section {
-      margin-bottom: 3rem; /* Consistent with About Us and Catalogue pages */
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 0.875rem;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
     }
 
-    /* Responsive adjustments */
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    .form-input::placeholder, .form-textarea::placeholder {
+      color: var(--text-light);
+    }
+
+    .submit-button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 0.875rem 2rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      width: 100%;
+    }
+
+    .submit-button:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+    }
+
+    .submit-button:active {
+      transform: translateY(0);
+    }
+
+    /* Spacing and Layout */
+    .section-spacing {
+      margin-bottom: 3rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* Responsive Design */
     @media (max-width: 768px) {
-      .contact-form-section {
-        margin-bottom: 2rem;
+      .hero-title {
+        font-size: 2rem;
       }
+      .hero-subtitle {
+        font-size: 1rem;
+        max-width: 90%;
+      }
+      .hero-section {
+        padding: 3rem 0 1.5rem;
+      }
+      .form-container {
+        padding: 2rem;
+        margin: 0 1rem;
+      }
+      .contact-card {
+        padding: 1.5rem;
+      }
+    }
+
+    /* Animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .stagger-1 { transition-delay: 0.1s; }
+    .stagger-2 { transition-delay: 0.2s; }
+    .stagger-3 { transition-delay: 0.3s; }
+
+    /* Dark Mode */
+    [data-theme="dark"] .hero-section {
+      background: linear-gradient(135deg, var(--bg-secondary) 0%, #1e293b 100%);
+    }
+
+    [data-theme="dark"] .hero-section::before {
+      background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23475569' fill-opacity='0.1'%3E%3Ccircle cx='20' cy='20' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     }
   </style>
 </head>
 <body data-theme="light">
-  <!-- Navbar (Copied from Homepage/About Us/Catalogue) -->
+  <!-- Navbar -->
   <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
     <div class="nav-container">
       <div class="logo-container">
@@ -124,49 +326,90 @@
     </div>
   </nav>
 
-  <!-- Contact Section -->
+  <!-- Main Content -->
   <main>
-    <section class="section" aria-labelledby="contact-title">
-      <div class="section-header fade-in">
-        <h2 class="section-title" id="contact-title">Contact Us</h2>
-        <p class="section-subtitle">Reach out for inquiries or to request a quotation for our industrial brushes, hoses, and pneumatic products.</p>
-      </div>
-      <div class="max-w-3xl mx-auto px-4">
-        <div class="text-center mb-8 fade-in stagger-1">
-          <p class="text-xl font-semibold">Phone: <a href="tel:+18005551234" class="text-[var(--primary)] hover:text-[var(--secondary)] transition">+1-800-555-1234</a></p>
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="hero-title fade-in">Contact Us</h1>
+          <p class="hero-subtitle fade-in stagger-1">
+            Get in touch for inquiries about our products. We're here to assist you with your industrial needs.
+          </p>
         </div>
-        <div class="feature-card contact-form-section fade-in stagger-2" tabindex="0">
-          <form action="/contact/submit" method="POST" class="p-6">
-            <div class="mb-4">
-              <label for="name" class="form-label">Name</label>
-              <input type="text" id="name" name="name" required class="form-input" aria-required="true">
-            </div>
-            <div class="mb-4">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" id="email" name="email" required class="form-input" aria-required="true">
-            </div>
-            <div class="mb-4">
-              <label for="category" class="form-label">Product Category</label>
-              <select id="category" name="category" required class="form-select" aria-required="true">
-                <option value="Industrial Brushes">Industrial Brushes</option>
-                <option value="Industrial Hoses">Industrial Hoses</option>
-                <option value="Pneumatic Products">Pneumatic Products</option>
-              </select>
-            </div>
-            <div class="mb-4">
-              <label for="message" class="form-label">Message</label>
-              <textarea id="message" name="message" rows="5" required class="form-textarea" aria-required="true"></textarea>
-            </div>
-            <div class="text-center">
-              <button type="submit" class="btn btn-primary" role="button" aria-label="Submit Request">Submit Request</button>
-            </div>
-          </form>
+      </div>
+    </section>
+
+    <!-- Contact Information -->
+    <section class="bg-[var(--bg)] py-6">
+      <div class="container">
+        <div class="grid md:grid-cols-3 gap-6 section-spacing">
+          <div class="contact-card fade-in stagger-1">
+            <div class="contact-icon">📞</div>
+            <h3 class="text-lg font-semibold mb-2">Phone</h3>
+            <p class="text-sm text-gray-600 mb-2">Call us directly</p>
+            <a href="tel:+18005551234" class="text-blue-600 font-medium hover:text-blue-700 transition">
+              +1-800-555-1234
+            </a>
+          </div>
+          <div class="contact-card fade-in stagger-2">
+            <div class="contact-icon">✉️</div>
+            <h3 class="text-lg font-semibold mb-2">Email</h3>
+            <p class="text-sm text-gray-600 mb-2">Send us a message</p>
+            <a href="mailto:info@brushhose.com" class="text-blue-600 font-medium hover:text-blue-700 transition">
+              info@brushhose.com
+            </a>
+          </div>
+          <div class="contact-card fade-in stagger-3">
+            <div class="contact-icon">⚡</div>
+            <h3 class="text-lg font-semibold mb-2">Quick Response</h3>
+            <p class="text-sm text-gray-600 mb-2">Fast turnaround</p>
+            <span class="text-gray-800 font-medium">24-hour quotes</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="bg-[var(--bg)] py-6">
+      <div class="container">
+        <div class="fade-in stagger-2">
+          <div class="form-container">
+            <h2 class="text-2xl font-semibold text-center mb-6">Send us a message</h2>
+            <form action="/contact/submit" method="POST">
+              <div class="grid md:grid-cols-2 gap-4">
+                <div class="form-group">
+                  <label for="name" class="form-label">Name</label>
+                  <input type="text" id="name" name="name" required class="form-input" placeholder="Your full name">
+                </div>
+                <div class="form-group">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" id="email" name="email" required class="form-input" placeholder="your@email.com">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="category" class="form-label">Product Category</label>
+                <select id="category" name="category" required class="form-select">
+                  <option value="">Select a category</option>
+                  <option value="Industrial Brushes">Industrial Brushes</option>
+                  <option value="Industrial Hoses">Industrial Hoses</option>
+                  <option value="Pneumatic Products">Pneumatic Products</option>
+                  <option value="General Inquiry">General Inquiry</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="message" class="form-label">Message</label>
+                <textarea id="message" name="message" rows="5" required class="form-textarea" placeholder="Tell us about your requirements or ask any questions..."></textarea>
+              </div>
+              <button type="submit" class="submit-button">Send Message</button>
+            </form>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Footer (Copied from Homepage/About Us/Catalogue) -->
+  <!-- Footer -->
   <footer class="footer" role="contentinfo">
     <div class="footer-content">
       <p>© 2025 Brush & Hose Co. All rights reserved.</p>
@@ -179,3 +422,35 @@
 
   <!-- JavaScript -->
   <script src="/static/js/scripts.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.fade-in').forEach(el => {
+        observer.observe(el);
+      });
+
+      const inputs = document.querySelectorAll('.form-input, .form-select, .form-textarea');
+      inputs.forEach(input => {
+        input.addEventListener('focus', function() {
+          this.style.transform = 'translateY(-1px)';
+        });
+        input.addEventListener('blur', function() {
+          this.style.transform = 'translateY(0)';
+        });
+      });
+    });
+  </script>
+</body>
+</html>
