@@ -21,17 +21,6 @@
       --border-light: #f3f4f6;
     }
 
-    [data-theme="dark"] {
-      --primary: #3b82f6;
-      --primary-dark: #2563eb;
-      --text: #f9fafb;
-      --text-light: #9ca3af;
-      --bg: #0f172a;
-      --bg-secondary: #1e293b;
-      --border: #334155;
-      --border-light: #475569;
-    }
-
     body {
       background: var(--bg);
       color: var(--text);
@@ -284,19 +273,6 @@
       opacity: 1;
       transform: translateY(0);
     }
-
-    .stagger-1 { transition-delay: 0.1s; }
-    .stagger-2 { transition-delay: 0.2s; }
-    .stagger-3 { transition-delay: 0.3s; }
-
-    /* Dark Mode */
-    [data-theme="dark"] .hero-section {
-      background: linear-gradient(135deg, var(--bg-secondary) 0%, #1e293b 100%);
-    }
-
-    [data-theme="dark"] .hero-section::before {
-      background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23475569' fill-opacity='0.1'%3E%3Ccircle cx='20' cy='20' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    }
   </style>
 </head>
 <body data-theme="light">
@@ -314,9 +290,6 @@
         <li role="menuitem"><a href="/contact" class="nav-link active" tabindex="0">Contact</a></li>
       </ul>
       <div class="nav-controls">
-        <div class="theme-toggle" role="button" aria-label="Toggle theme" tabindex="0" onclick="toggleTheme()">
-          <div class="theme-slider"></div>
-        </div>
         <div class="mobile-menu-btn" role="button" aria-label="Toggle mobile menu" tabindex="0">
           <span></span>
           <span></span>
