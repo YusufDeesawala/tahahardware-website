@@ -9,6 +9,7 @@ import { supabase } from "@/lib/supabase"
 import Link from "next/link"
 import Image from "next/image"
 import SpecificationsModal from "@/components/specifications-modal"
+import { BrandCarousel } from "@/components/brand-carousel"
 
 export default function HomePage() {
   const [brands, setBrands] = useState<any[]>([])
@@ -118,34 +119,7 @@ export default function HomePage() {
       </section>
 
       {/* Brands Section */}
-      {brands.length > 0 && (
-        <section className="py-16 bg-gradient-to-r from-gray-50 to-blue-50 border-y border-gray-100">
-          <div className="container mx-auto px-6">
-            <div className="text-center mb-12">
-              <h3 className="text-2xl font-bold text-slate-800 mb-4">We Deal With the Following Brands</h3>
-              <p className="text-slate-600">Dealing in India's most respected brands</p>
-            </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
-              {brands.slice(0, 6).map((brand, index) => (
-                <div
-                  key={brand.id}
-                  className="flex items-center justify-center p-6 bg-white rounded-xl hover:bg-gradient-to-br hover:from-blue-50 hover:to-slate-50 transition-all duration-300 transform hover:scale-105 shadow-sm hover:shadow-lg"
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  <Image
-                    src={brand.logo_url || "/placeholder.svg?height=60&width=120"}
-                    alt={brand.name}
-                    width={120}
-                    height={60}
-                    className="max-w-24 max-h-12 object-contain opacity-70 hover:opacity-100 transition-opacity duration-300"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
+      <BrandCarousel />
 
       {/* Featured Products */}
       {featuredProducts.length > 0 && (
